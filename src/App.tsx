@@ -1,13 +1,15 @@
 import * as React from 'react'
-import { ChakraProvider, Box, Grid, theme, Button } from '@chakra-ui/react'
-import { requestDevice } from './bluetooth'
+import { ChakraProvider, Box, theme, Center, VStack } from '@chakra-ui/react'
+import { Content } from './Content'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <Button onClick={requestDevice}>Connect Device</Button>
-      </Grid>
+    <Box fontSize="xl">
+      <Center minH="100vh" p={3}>
+        <VStack>
+          <Content />
+        </VStack>
+      </Center>
     </Box>
   </ChakraProvider>
 )
