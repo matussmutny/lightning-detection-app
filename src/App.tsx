@@ -1,11 +1,6 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Grid,
-  theme, Button,
-} from "@chakra-ui/react"
-import {requestDevice} from './bluetooth'
+import * as React from 'react'
+import { ChakraProvider, Box, Grid, theme, Button } from '@chakra-ui/react'
+import { requestDevice } from './bluetooth'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
