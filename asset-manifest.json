@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/lightning-detection-app/static/js/main.9d1ba99a.js",
+    "main.js": "/lightning-detection-app/static/js/main.d247d68f.js",
     "static/js/377.d419b351.chunk.js": "/lightning-detection-app/static/js/377.d419b351.chunk.js",
     "service-worker.js": "/lightning-detection-app/service-worker.js",
     "index.html": "/lightning-detection-app/index.html",
-    "main.9d1ba99a.js.map": "/lightning-detection-app/static/js/main.9d1ba99a.js.map",
+    "main.d247d68f.js.map": "/lightning-detection-app/static/js/main.d247d68f.js.map",
     "377.d419b351.chunk.js.map": "/lightning-detection-app/static/js/377.d419b351.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.9d1ba99a.js"
+    "static/js/main.d247d68f.js"
   ]
 }
