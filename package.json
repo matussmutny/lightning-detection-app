@@ -2,7 +2,7 @@
   "name": "lightning-detection-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://matussmutny.github.io/lightning-detection-app",
+  "homepage": "https://matussmutny.github.io/lightning-detection-app/",
   "dependencies": {
     "@chakra-ui/react": "^1.7.4",
     "@emotion/react": "^11.7.1",

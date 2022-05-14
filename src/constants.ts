@@ -12,3 +12,15 @@ export const LOADING_STATUS = {
   RECONNECTING: 'reconnecting',
   DONE: 'done'
 }
+
+export const DATA_MAX_LIMIT = 200
+export const DATA_STORAGE_KEY = 'lightning-data'
+
+export const PAGE_STORAGE_KEY = 'app-page'
+
+export enum PAGE {
+  HOME = 'home',
+  HISTORY = 'history',
+  GRAPHS = 'graphs',
+  CONNECTION = 'connection'
+}

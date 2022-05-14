@@ -7,7 +7,7 @@ import {
   LOADING_STATUS
 } from './constants'
 import { useState } from 'react'
-import { useStorage } from './storage'
+import { useLightningDataStorage } from './storage'
 
 interface State {
   value: string
@@ -82,7 +82,7 @@ export const requestAndConnectDevice = async (
 
 export const useBluetooth = () => {
   const [state, setState] = useState(initialState)
-  const { addData } = useStorage()
+  const { addData } = useLightningDataStorage()
 
   const updateState = (updatedState: Partial<State>) => {
     setState((prevState: State) => ({ ...prevState, ...updatedState }))
