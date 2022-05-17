@@ -23,16 +23,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "bluetooth": {
-    "uuids": [ "BT05" ],
+    "uuids": [ "ffe0", "ffe1" ],
     "low_energy": true
-  },
-  "permissions": [
-    {
-      "bluetooth": [
-        {
-          "uuid": "BT05"
-        }
-      ]
-    }
-  ]
+  }
 }
