@@ -25,5 +25,14 @@
   "bluetooth": {
     "uuids": [ "BT05" ],
     "low_energy": true
-  }
+  },
+  "permissions": [
+    {
+      "bluetooth": [
+        {
+          "uuid": "BT05"
+        }
+      ]
+    }
+  ]
 }
