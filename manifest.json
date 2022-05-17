@@ -25,5 +25,14 @@
   "bluetooth": {
     "uuids": [ "ffe0", "ffe1" ],
     "low_energy": true
-  }
+  },
+  "permissions": [
+    {
+      "bluetooth": [
+        {
+          "uuid": "ffe0"
+        }
+      ]
+    }
+  ]
 }
