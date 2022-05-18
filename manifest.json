@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Lightning",
+  "short_name": "Lightning",
+  "name": "Lightning Detection App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#111111",
+  "background_color": "#111111"
 }
