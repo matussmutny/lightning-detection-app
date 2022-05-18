@@ -21,18 +21,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "bluetooth": {
-    "uuids": [ "ffe0", "ffe1" ],
-    "low_energy": true
-  },
-  "permissions": [
-    {
-      "bluetooth": [
-        {
-          "uuid": "ffe0"
-        }
-      ]
-    }
-  ]
+  "background_color": "#ffffff"
 }
