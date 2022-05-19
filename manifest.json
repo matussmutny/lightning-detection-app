@@ -1,6 +1,7 @@
 {
   "short_name": "Lightning",
   "name": "Lightning Detection App",
+  "gcm_sender_id": "120607035644",
   "icons": [
     {
       "src": "favicon.ico",
