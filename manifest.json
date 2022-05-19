@@ -20,7 +20,8 @@
     }
   ],
   "start_url": ".",
-  "display": "fullscreen",
+  "display_override": ["window-control-overlay", "minimal-ui"],
+  "display": "standalone",
   "theme_color": "#111111",
   "background_color": "#111111"
 }
