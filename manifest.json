@@ -19,9 +19,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display_override": ["window-control-overlay", "minimal-ui"],
   "display": "standalone",
+  "start_url": "/?standalone=true",
   "theme_color": "#111111",
   "background_color": "#111111"
 }
