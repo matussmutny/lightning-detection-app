@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lightning",
+  "name": "Lightning Detection App",
+  "gcm_sender_id": "120607035644",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "start_url": "./?standalone=true",
+  "theme_color": "#111111",
+  "background_color": "#111111"
 }

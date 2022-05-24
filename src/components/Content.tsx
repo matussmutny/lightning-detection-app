@@ -1,82 +1,102 @@
-import React from 'react'
-import { useBluetooth } from '../bluetooth'
-import { Button, Spinner, Text, VStack } from '@chakra-ui/react'
-import { useLightningDataStorage, usePageStorage } from '../storage'
+import React, { useEffect, useState } from 'react'
+import { BluetoothReturn } from '../bluetooth'
+import { Box, Text, useToast, VStack } from '@chakra-ui/react'
+import { useLightningDataStorage } from '../storage'
 import { CurrentReport } from './CurentReport'
 import { Reports } from './Reports'
-import { PAGE } from '../constants'
+import { Page, PAGE, REFUSE_TO_CHOOSE_DEVICE, TODAY } from '../constants'
+import { Map } from './Map'
+import { differenceInHours } from 'date-fns'
+import { Charts } from './Charts'
+import { NoActivity } from './NoActivity'
 
-const testingData = [
-  { distance: 6, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) },
-  { distance: 4, time: new Date(213232321) }
-]
-
-export const Content = () => {
-  const { isLoading, isConnected, loadingStatus, error, onClick, reset } = useBluetooth()
+export const Content = ({
+  bluetooth,
+  page,
+  setPage
+}: {
+  bluetooth: BluetoothReturn
+  page: string
+  setPage: (value: Page) => void
+}) => {
+  const { isConnected, error } = bluetooth
   const { data } = useLightningDataStorage()
-  const { page } = usePageStorage()
+  const [dataCount, setDataCount] = useState(data.length)
+  const toast = useToast()
 
-  if (error) {
-    return (
-      <VStack>
-        <Text color="red" textAlign="center">
-          {error.message}
-        </Text>
-        <Button onClick={reset}>Try again</Button>
-      </VStack>
-    )
-  }
+  useEffect(() => {
+    if (error && error?.message !== REFUSE_TO_CHOOSE_DEVICE) {
+      toast({
+        position: 'top',
+        title: 'Connection Failed',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true
+      })
+    }
+  }, [error])
 
-  if (isLoading) {
-    return (
-      <VStack>
-        <Spinner />
-        <Text>{loadingStatus}</Text>
-      </VStack>
-    )
-  }
+  useEffect(() => {
+    if (isConnected) {
+      toast({
+        position: 'top',
+        title: 'Connection Succeeded',
+        description: 'Connection to device was successful',
+        status: 'success',
+        duration: 5000,
+        isClosable: true
+      })
+    }
+  }, [isConnected])
+
+  useEffect(() => {
+    console.log(dataCount, data.length)
+    console.log(page)
+    if (dataCount < data.length && page === PAGE.MAP) {
+      toast({
+        position: 'top',
+        title: 'New Activity detected',
+        description: 'New lightning activity was detected nearby',
+        status: 'info',
+        duration: 5000,
+        isClosable: true,
+        onCloseComplete: () => {
+          setPage(PAGE.HOME)
+        }
+      })
+      setDataCount(data.length)
+    }
+  }, [data])
+  console.log({ dataAdded: dataCount })
+  console.log(document.fullscreenElement)
 
   switch (page) {
     case PAGE.HOME:
       return (
         <VStack>
-          {data ? (
-            <CurrentReport data={testingData[testingData.length - 1]} />
+          {data?.length && differenceInHours(TODAY, new Date(data[data.length - 1].time)) < 1 ? (
+            <CurrentReport data={data[data.length - 1]} />
           ) : (
-            <Text>No activity</Text>
+            <NoActivity />
           )}
         </VStack>
       )
-    case PAGE.CONNECTION:
-      return <>{!loadingStatus && <Button onClick={onClick}>Connect Device</Button>}</>
     case PAGE.HISTORY:
-      return <Reports data={testingData} />
+      return <Reports data={data} />
+    case PAGE.MAP:
+      return (
+        <Box height="100%" width="100%" overflow="hidden">
+          <Map data={data} />
+        </Box>
+      )
+    case PAGE.GRAPHS:
+      return <Charts data={data} />
     default:
       return (
         <VStack>
-          {data ? <CurrentReport data={data[data.length - 1]} /> : <Text>No activity</Text>}
+          <Text>Nothing</Text>
         </VStack>
       )
   }
-
-  return (
-    <VStack>
-      {data ? <CurrentReport data={data[data.length - 1]} /> : <Text>No activity</Text>}
-    </VStack>
-  )
-
-  return <>{!loadingStatus && <Button onClick={onClick}>Connect Device</Button>}</>
 }

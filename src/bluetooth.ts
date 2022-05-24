@@ -62,7 +62,6 @@ export const requestAndConnectDevice = async (
 ) => {
   try {
     console.log('requesting device...')
-
     let device = await navigator.bluetooth.requestDevice(BT_OPTIONS)
     device.addEventListener(BT_LISTENER_TYPE_SERVER, async (event) => {
       console.log('disconnected, reconnecting...')
@@ -70,17 +69,23 @@ export const requestAndConnectDevice = async (
       updateState({ isLoading: true, isConnected: false, loadingStatus: RECONNECTING })
       await connectDevice(device, updateState, addData)
       updateState({ isLoading: false, isConnected: true, loadingStatus: DONE })
+      device?.removeEventListener(BT_LISTENER_TYPE_SERVER, () => null)
     })
     updateState({ isLoading: true, isConnected: false, loadingStatus: CONNECTING })
     await connectDevice(device, updateState, addData)
     updateState({ isLoading: false, isConnected: true, loadingStatus: DONE })
   } catch (e) {
     const error = e as Error
-    updateState({ error })
+    updateState({ ...initialState, error })
   }
 }
 
-export const useBluetooth = () => {
+export interface BluetoothReturn extends State {
+  onClick: () => void
+  reset: () => void
+}
+
+export const useBluetooth = (): BluetoothReturn => {
   const [state, setState] = useState(initialState)
   const { addData } = useLightningDataStorage()
 
@@ -88,12 +93,12 @@ export const useBluetooth = () => {
     setState((prevState: State) => ({ ...prevState, ...updatedState }))
   }
 
-  const onClick = () => {
-    void requestAndConnectDevice(updateState, addData)
-  }
-
   const reset = () => {
     setState(initialState)
+  }
+
+  const onClick = () => {
+    void requestAndConnectDevice(updateState, addData)
   }
 
   return {
