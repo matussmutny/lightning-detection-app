@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useInterval } from 'usehooks-ts'
-import { MINUTE } from '../constants'
+import { MINUTE } from './constants'
 
 export const useRefresh = () => {
   const [, setCounter] = useState(0)

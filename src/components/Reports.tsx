@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { format, formatDistanceToNow } from 'date-fns'
 import { NAVBAR_COLOR } from '../constants'
-import { useRefresh } from './refresh'
+import { useRefresh } from '../refresh'
 import { ReportDetail } from './ReportDetail'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/all'
 import groupBy from 'lodash.groupby'

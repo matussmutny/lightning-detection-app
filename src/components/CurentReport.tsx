@@ -3,7 +3,7 @@ import { LightningData } from '../storage'
 import { Icon, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { formatDistanceToNow } from 'date-fns'
 import { GiLightningStorm } from 'react-icons/all'
-import { useRefresh } from './refresh'
+import { useRefresh } from '../refresh'
 import { ReportDetail } from './ReportDetail'
 
 export const CurrentReport = ({ data }: { data: LightningData }) => {

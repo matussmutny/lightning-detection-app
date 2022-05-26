@@ -16,8 +16,6 @@ export const LOADING_STATUS = {
 export const DATA_MAX_LIMIT = 1000
 export const DATA_STORAGE_KEY = 'lightning-data'
 
-export const PAGE_STORAGE_KEY = 'app-page'
-
 export enum PAGE {
   HOME = 'home',
   HISTORY = 'history',
